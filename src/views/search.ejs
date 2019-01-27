@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+  <link href="/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar navbar-bright navbar-fixed-top" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">Home</a>
+      </div>
+      <nav class="collapse navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <% for(let i=0; i<nav.length; i++) { %>
+          <li>
+            <a href="<%= nav[i].link %>">
+              <%= nav[i].title %></a>
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div id="masthead">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1>
+            <%= title %>
+            <p class="lead"></p>
+          </h1>
+        </div>
+        <div class="col-md-5">
+          <div class="well well-lg">
+            <div class="row">
+              <div class="col-sm-12">
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /cont -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="top-spacer"> </div>
+        </div>
+      </div>
+    </div><!-- /cont -->
+
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <div class="panel">
+          <div class="panel-body">
+
+
+
+            <!--/stories-->
+
+            <div class="row">
+
+              <div class="col-md-2 col-sm-3 text-center">
+                <a class="story-title" href="#">
+              </div>
+              <div class="col-md-10 col-sm-9">
+                <h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Search for a video</h3>
+
+                <form action='/search/video' method='get'>
+                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                  <input type="text" name="search_query" value=<%=search%>>
+
+                  &nbsp; &nbsp;
+
+
+                  <input type="submit" value="Search">
+                  <br><br />
+<% if(str && videos.length>0) { %>
+                  <h3 align="center"><%= results %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h3>
+<% } else if (str){ %>
+  <h3 align="center"> No search results found for '<%= str %>' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</h3>
+<% } %>
+<br>
+                  <div class="row">
+
+                    <div class="col-xs-3"></div>
+                  </div>
+
+
+                </form>
+              </div>
+            </div>
+
+            <% if(videos){ %>
+              	<% for(let i=0; i<videos.length; i++) { %>
+                  <hr />
+            <div class="row">
+              <br>
+              <div class="col-md-2 col-sm-3 text-center">
+                <a class="story-title" href="<%= videos[i].link %>">
+                  <!--<img alt="" src="http://api.randomuser.me/portraits/thumb/men/58.jpg" style="width:100px;height:100px" class="img-circle">--></a>
+              </div>
+              <div class="col-md-10 col-sm-9">
+                <a href="<%= videos[i].link %>">
+                  <h3>
+                    <%= videos[i].title %>
+                  </h3>
+                </a>
+                <div class="row">
+                  <div class="col-xs-9">
+                    <h4><span class="label label-default">
+                        <%= videos[i].description %></span></h4>
+                    <h4>
+                      <small style="font-family:courier,'new courier';" class="text-muted"> •
+                        <%= videos[i].clicks + ' views' %></small>
+                    </h4>
+                  </div>
+                  <div class="col-xs-3"></div>
+                </div>
+                <br><br>
+              </div>
+            </div>
+            <% } } else if (str){ %>
+              <div class="row">
+                <br>
+                <div class="col-md-2 col-sm-3 text-center">
+                  <a class="story-title" href="#">
+                    <!--<img alt="" src="http://api.randomuser.me/portraits/thumb/men/58.jpg" style="width:100px;height:100px" class="img-circle">--></a>
+                </div>
+                <div class="col-md-10 col-sm-9">
+
+                  <div class="row">
+                    <div class="col-xs-9">
+
+                      <h3> No search results found for '<%= str %>'</h3>
+                    </div>
+                    <div class="col-xs-3"></div>
+                  </div>
+                  <br><br>
+                </div>
+              </div>
+
+            <% } %>
+
+
+          </div>
+        </div>
+      </div>
+      <!--/col-12-->
+    </div>
+  </div>
+
+
+
+
+  <!-- script references -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
